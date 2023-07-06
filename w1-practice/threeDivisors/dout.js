@@ -1,0 +1,1 @@
+//time compixty of solution O(N^2)
