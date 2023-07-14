@@ -2,6 +2,7 @@
  * @param {number[]} nums
  * @return {number}
  */
+//* O(n ^ 2) ==> worst case not found -->right O(n) to left O(n) iteration at right  
 const leftSum = (startIndex, [...nums]) => {
     return nums.slice(0, startIndex).reduce((acc, curr) => acc + curr, 0)
   }
