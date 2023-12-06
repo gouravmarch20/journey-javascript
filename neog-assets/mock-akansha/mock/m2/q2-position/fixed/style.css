@@ -1,0 +1,50 @@
+body {
+  min-height: 300vh;
+}
+.p {
+  background-color: lavender;
+}
+.fixed {
+  position: fixed;
+  background-color: lightcoral;
+}
+.relative {
+  position: relative;
+  border: 1px solid red;
+}
+.tblr {
+  top: 0px;
+  left: 4rem;
+}
+
+/* 
+
+ //** position alignment 
+
+- left / right / top / bottom
+? note : left / right only one can used at a time 
+ out of left / right we can use one only at a time --> similary out of top / bottom we can only use one at a time
+
+
+*/
+
+/*
+
+
+ //** sticky ==> 
+ - relative to it parent  
+//** fixed - by flex we divide screen in to side -- and in fixed we place navbar && in infine scroll navbar remain there 
+- like absolute ==> come out of default flow width inline prop , if not t/b/l/r define just remain out of flow with no overflow issue, if t/b/l/r defined move acc to it and overflow issue appear 
+! diff 
+? - it remain fixed while  absolute disapper 
+?- if  parent is relative still it will be relative to body tag 
+//** relative 
+- if not given t/b/l/r it remain like static 
+- if give t/b/l/r any ==> then form it relative postion it move to alignment 
+- generally we should avoid t/b/l/r
+
+//** absolute 
+-
+-
+-
+*/

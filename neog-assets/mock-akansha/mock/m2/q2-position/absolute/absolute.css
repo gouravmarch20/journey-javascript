@@ -1,0 +1,47 @@
+p {
+  margin: 1rem;
+  background-color: lavender;
+}
+
+.bg-blue {
+  background-color: blue;
+  color: aqua;
+  padding: 3px;
+}
+
+.bg-orange {
+  background-color: orange;
+}
+.bg-red {
+  background-color: red;
+}
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+  border: 3px solid red;
+}
+
+.tblr {
+  top: 1px;
+  left: 3rem;
+}
+
+/*Too many realative parent then it will be  relative to is closest relative parent  */
+/* bottom :0 it bottom will toouch parent bottom  */
+/* bottom :0 it top will touch parent top  */
+/*  */
+/* 
+
+- came out of it's regular flow ==> will overlap other item , due to it outflow feature now we can move it costomize way
+width :  will reset to as much require like inline display
+//** t/b/l/r not define
+- remain there OUT OF FLOW , & widht like inline ==> not get align with body
+//** t/b/l/r  define but no parent ==> body kai relative align 
+- relative to 
+//** have parent but parent have  no relative position ==> body kai relative align
+
+
+*/

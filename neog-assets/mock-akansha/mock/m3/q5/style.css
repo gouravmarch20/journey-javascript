@@ -1,0 +1,21 @@
+/*
+- box model 
+-
+it consist of element , padding , border , margin 
+- to visulize : t in dev tool we can see which element has what kind of property out of these four 
+
+/* TODO: CROSS-CHECK  */
+*/
+.div{
+    width: 200px;
+    padding: 10px;
+    border: 3px solid red;
+    /* without box-sizing border both --< element : 200px , padding 10 px in both  side , border 3px in both  side  
+    //** final width 226px
+    */
+    /* with box-sizing ---< element : 174px , padding : 20px , border: 6px  
+    
+        //** final width 200px
+
+    */
+}

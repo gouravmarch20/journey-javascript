@@ -1,0 +1,24 @@
+/* sticky 
+
+- width remain fixed as defined 
+- normal position like static / default ==> before element to hit as top define it will become fixed 
+- if no top defined / top = 0 dispapper like normal element 
+- if parent relative : behave as normal element hidden 
+//** top defined at lest more than height of element ==> other wise have of it's element will hidden on top
+
+*/
+body {
+  min-height: 300vh;
+}
+.sticky-less {
+  position: sticky;
+  background-color: orange;
+  padding: 1rem;
+  top: 15px;
+}
+.sticky {
+  position: sticky;
+  background-color: greenyellow;
+  padding: 1rem;
+  top: 120px;
+}

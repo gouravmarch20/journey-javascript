@@ -1,0 +1,11 @@
+/* tell different unit in css 
+-px : fix 
+- rem : relative to root font size , recommed to use ==> by changing root  font size automaically rem unit will became relative to it  or as user default font size set in browser ==> extra large ===> it will adjust them self --> default root font size is 16px but we seet 10px for easy computize in px 
+- em - rarely use >> 
+- % => relative to parent element 
+- vh/vw => viewport height / viewport width => 1vh relative to  1% of   widht/height of viewport ---> mainly in mobile to achive responsive easily 
+- vmin/vmax : relative to viewport ==> like vh/vw ==> we had define max not go futher && min must occupy this
+? vh : fix 
+? vmin/vmax : responsive
+
+*/

@@ -1,0 +1,1 @@
+// two way of event propogation -->  event bubling  , event capturing or event triggring 

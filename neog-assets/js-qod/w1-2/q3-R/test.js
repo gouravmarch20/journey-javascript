@@ -1,0 +1,1 @@
+console.log("first dfs fs  a".slice(1))
