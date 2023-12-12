@@ -1,0 +1,1 @@
+//callbackFunc(accumulator, currentValue, index, arr)
