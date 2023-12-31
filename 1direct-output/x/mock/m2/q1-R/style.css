@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
+  width: 900px;
+  height: 500px;
+  /* margin: auto; */
+}
+/* > without flex wrap : item will be seen by scroolling in x direction because all item will in row  */
+
+/* with flex wrap >> it auto push item in next column/line if all item are about to overlap in coustom width or 100% width if width not define ---> ** NOTE if height is fixed here only limited item will able to display so avoid it define height auto or not define height */

@@ -1,6 +1,10 @@
 
-const obj = { n: 5, i: 7, c: 9 };
+const person = {
+  name: 'Lydia',
+  age: 21,
+};
 
-for (const [key, value] of Object.entries(obj)) {
-  console.log(`${key} ${value}`); 
+for (const [x, y] of Object.entries(person)) {
+  console.log(x, y);
+  console.log(`${x}--${y}`); 
 }

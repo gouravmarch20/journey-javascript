@@ -1,0 +1,14 @@
+.relative {
+  background-color: red;
+  padding: 1rem;
+  position: relative;
+}
+.relative-alignment {
+  background-color: red;
+  padding: 1rem;
+  position: relative;
+  top: 1rem;
+  left: 1rem;
+  display: inline-block;
+}
+

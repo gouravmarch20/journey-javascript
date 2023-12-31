@@ -1,0 +1,14 @@
+.a {
+  margin: 1rem;
+  color: green ;
+}
+.a:hover {
+  color: blue;
+}
+.a:visited {
+    /* color: red; */
+}
+.a:focus {
+  /* color: red; */
+}
+/* active  */

@@ -1,0 +1,3 @@
+myFetch('/myURL')
+.then()
+.catch()

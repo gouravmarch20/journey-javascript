@@ -1,0 +1,36 @@
+.display {
+  padding: 1rem;
+  background-color: grey;
+  margin: 1rem;
+}
+.display-default {
+}
+.display-inline-block {
+  display: inline-block;
+  background-color: lightcoral;
+  width: 70%;
+  padding: 2rem;
+
+}
+.display-inline {
+  display: inline;
+  background-color: lavender;
+  width: 70%;
+  margin: 1rem !important;//**/
+  padding: 1.5rem;
+
+}
+.coustom-width {
+    width: 150%;
+}
+
+/* inline -   
+
+- no margin accept  ===> it's above/below/left item who are block there margin property not work  , next item will start just when it content end
+
+- padding : accept , but cause overlapping because it's sourrounding margin not accept 
+
+
+
+*/
+/* inline-block -   all defined css property applied on it */
