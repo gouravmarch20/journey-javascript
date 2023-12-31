@@ -1,5 +1,0 @@
-// insert :  O(1)
-// remove : O(1)
-// acess : O(1)
-// search : O(n)
-// Object.keys/value/entities : O(n )

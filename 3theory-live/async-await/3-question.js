@@ -11,11 +11,11 @@ const p2 = new Promise((res, rej) => {
 
 async function hello() {
   const val1 = await p1
-  console.log("by await - 5s", val1)
+  console.log("by await - 5s", val1) //* no code block , below code execute -->
   const val2 = await p2
-  console.log("by await 2s", val2) //^no wait for 2sec more --> no code block , line by line code execute
+  console.log("by await 2s", val2)
 }
 
 hello()
-console.log("end")
+console.log("---end")
 setTimeout(() => console.log("hello there"), 1000)
