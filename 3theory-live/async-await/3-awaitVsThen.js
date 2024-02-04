@@ -1,4 +1,4 @@
-// TODO:: WRONG intro.ts 3rd point
+//* function mai wrap for await keyword , thus promise too to show diff
 const p = new Promise((res, rej) =>
   setTimeout(() => {
     res(6)
@@ -6,14 +6,17 @@ const p = new Promise((res, rej) =>
 )
 
 // ? async
-// async function hello() {
-//   const val = await p
-//   console.log("by await", val)
-// }
+async function hello() {
+  const val = await p
+  console.log("by await", val)
+}
 //? then catch ==> below code no pause
-p.then((res) => {
-  console.log("by then ", res)
+function hello() {
+  p.then((res) => {
+    console.log("by then ", res)
+    console.log("what i want -> fd || bd || fsd")
+  })
   console.log("time , tide & javascript wait for none ")
-})
 
-// hello()
+}
+hello()

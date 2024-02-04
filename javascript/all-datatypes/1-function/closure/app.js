@@ -1,1 +1,0 @@
-// use : some hof (memorize), function curring , module patern , data hinding 

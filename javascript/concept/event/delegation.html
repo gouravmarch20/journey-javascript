@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Delegation with Data Attributes</title>
+</head>
+<body>
+
+<div id="parentContainer">
+  <button class="childButton" data-action="action1">Button 1</button>
+  <button class="childButton" data-action="action2">Button 2</button>
+  <button class="childButton" data-action="action3">Button 3</button>
+</div>
+
+<script>
+// Adding a single event listener to the parent container
+document.getElementById('parentContainer').addEventListener('click', function(event) {
+  // Check if the clicked element is a button with the class 'childButton'
+  if (event.target.classList.contains('childButton')) {
+    // Access the data-action attribute to get additional information
+    var action = event.target.getAttribute('data-action');
+
+    // Perform some action based on the data-action attribute
+    alert('Button clicked: ' + event.target.textContent + ', Action: ' + action);
+  }
+});
+</script>
+
+</body>
+</html>

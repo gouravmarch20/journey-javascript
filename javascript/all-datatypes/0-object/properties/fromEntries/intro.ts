@@ -1,1 +1,0 @@
-//The fromEntries method turns a 2d array into an object. The first element in each subarray will be the key, and the second element in each subarray will be the value.
