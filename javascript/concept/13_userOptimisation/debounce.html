@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debounce Demo</title>
+</head>
+<body>
+
+    <h2>Debounced Search Input</h2>
+    <input type="text" id="searchInput" placeholder="Type to search..." />
+
+    <script>
+        // Function to simulate a search operation
+        function handleSearch(query) {
+            console.log("Searching for:", query);
+        }
+
+        // Simple debounce function
+        function debounce(func, delay) {
+            console.log("debug_1")
+            let timeoutId;
+            // return function to avoid destory of timeoutId
+            return function (arg) {
+                console.log("debug_2")
+
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(function () {
+                    func(arg);
+                }, delay);
+            };
+        }
+
+        // Create a debounced version of handleSearch
+        const debouncedSearch = debounce(handleSearch, 500);//returning  function  debounce
+
+        // Attach event listener to input field
+        document.getElementById("searchInput").addEventListener("input", function (event) {
+            debouncedSearch(event.target.value);  // Call debounced function with input value
+        });
+    </script>
+
+</body>
+</html>

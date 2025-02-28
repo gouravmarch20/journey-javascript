@@ -1,23 +1,20 @@
-// const promise1 = Promise.resolve(5)
-// const promise2 = 'return direct value'
-// const promise3 = new Promise((resolve, reject) => {
-//   const foo = (value1, value2) => resolve(value1, value2)
-//   setTimeout(foo, 2000, 'belive', 'xyz')
-// })
-// TODO: CHANGE SYNTAX -> REJECT / RESOLVE
-const promiseReject = Promise.reject('i reject this promise')
-const p1 = new Promise((resolve, reject) => {
-  //   setTimeout(() => {
-  // reject('3 sec')
-  //   resolve('3 sec')
-  //   }, 2000)
-  try {
-    if (true) {
-      resolve(4)
-    }
-  } catch (error) {}
-})
+async function fetchAllSettled() {
+  const urls = [
+    'https://jsonplaceholder.typicode.com/posts/1',
+    'https://jsonplaceholder.typicode.com/invalid-url', // This will fail
+    'https://jsonplaceholder.typicode.com/posts/3'
+  ];
 
-Promise.allSettled([p1])
-  .then(value => console.log(value))
-  .catch(err => console.log(err))
+  const results = await Promise.allSettled(urls.map(url => fetch(url)));
+  console.log("results" , results)
+
+  // results.forEach((result, index) => {
+  //   if (result.status === 'fulfilled') {
+  //     console.log(`✅ Response ${index + 1}:`, result.value);
+  //   } else {
+  //     console.error(`❌ Error fetching API ${index + 1}:`, result.reason);
+  //   }
+  // });
+}
+
+fetchAllSettled();

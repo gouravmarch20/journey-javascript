@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>textContent vs innerHTML</title>
+</head>
+<body>
+
+    <h2>Update Status</h2>
+    
+    <div id="statusBox">
+        <p>Current Status: <span id="statusText">Single</span></p>
+    </div>
+    
+    <button onclick="updateWithTextContent()">Use textContent</button>
+    <button onclick="updateWithInnerHTML()">Use innerHTML</button>
+
+    <script>
+        function updateWithTextContent() {
+            const statusText = document.getElementById('statusText');
+            statusText.textContent = "In a Relationship ❤️";  // Just changes text
+        }
+
+        function updateWithInnerHTML() {
+            const statusDiv = document.getElementById('statusBox');
+            statusDiv.innerHTML = "<p>Current Status: <strong>In a Relationship ❤️</strong></p>"; // Replaces entire div content
+        }
+    </script>
+
+</body>
+</html>

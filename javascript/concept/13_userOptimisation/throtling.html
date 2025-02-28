@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Throttle Demo</title>
+</head>
+<body>
+
+    <h2>Resize the window to see throttling in action</h2>
+
+    <script>
+        // Function to handle window resizing
+        function handleResize() {
+            console.log("Window resized at", new Date().toLocaleTimeString());
+        }
+
+        // Create a throttled version of handleResize
+        const throttledResize = throttle(handleResize, 2000); // Runs at most once every 250ms
+
+        // Attach event listener to window resize
+        window.addEventListener("resize", throttledResize);
+
+        // Throttle function (simplified)
+        function throttle(func, delay) {
+            let lastExec = 0;
+
+            return function () {
+                let now = Date.now();
+
+                if (now - lastExec >= delay) {
+                    func();  // Execute function
+                    lastExec = now;  //! Update last execution time
+                }
+            };
+        }
+    </script>
+
+</body>
+</html>

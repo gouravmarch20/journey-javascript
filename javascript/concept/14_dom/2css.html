@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Style Manipulation</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 100px;
+            background-color: lightgray;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .blueBackground {
+            background-color: lightblue !important;
+        }
+
+        .redText {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>CSS Style Manipulation Demo</h2>
+    <div id="box">Hello World</div>
+    <br>
+    <button onclick="changeBackground()">Change Background</button>
+    <button onclick="toggleTextColor()">Toggle Text Color</button>
+
+    <script>
+        function changeBackground() {
+            const box = document.getElementById('box');
+            box.classList.toggle('blueBackground'); // Toggle background color
+        }
+
+        function toggleTextColor() {
+            const box = document.getElementById('box');
+            box.classList.toggle('redText'); // Toggle text color
+        }
+    </script>
+
+</body>
+</html>
