@@ -1,0 +1,25 @@
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 200px;
+}
+
+.grid-cell {
+    width: 50px;
+    height: 50px;
+    background-color: lightgray;
+    border: 1px solid black;
+}
+
+.border_yellow { /* Fixed class name */
+    border: 2px solid yellow; /* Make border more visible */
+}
+
+.red_ { /* Fixed class name */
+    background-color: red;
+}
+
+.blue { /* Kept consistent */
+    background-color: blue;
+}

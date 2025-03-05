@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Multi-Step Form Validation</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <form id="multiStepForm">
+        <div class="step active" id="step1">
+            <label>Name:</label>
+            <input type="text" id="name">
+            <span class="error-message"></span>
+            <button type="button" onclick="nextStep(1)">Next</button>
+        </div>
+
+        <div class="step" id="step2">
+            <label>Email:</label>
+            <input type="email" id="email">
+            <span class="error-message"></span>
+            <button type="button" onclick="prevStep(2)">Back</button>
+            <button type="button" onclick="nextStep(2)">Next</button>
+        </div>
+
+        <div class="step" id="step3">
+            <label>Password:</label>
+            <input type="password" id="password">
+            <span class="error-message"></span>
+            <button type="button" onclick="prevStep(3)">Back</button>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+
+    <script src="./index.js"></script>
+</body>
+</html>

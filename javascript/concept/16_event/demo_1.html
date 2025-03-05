@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Table</title>
+</head>
+<body>
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John Doe</td>
+                <td>john.doe@example.com</td>
+                <td><button class="delete-btn" data-user-id="1">Delete</button></td>
+            </tr>
+            <tr>
+                <td>Jane Smith</td>
+                <td>jane.smith@example.com</td>
+                <td><button class="delete-btn" data-user-id="2">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <button id="addUserBtn">Add User</button>
+    
+    <script>
+        const userTable = document.getElementById('userTable');
+        const addUserBtn = document.getElementById('addUserBtn');
+        let userIdCounter = 3;
+
+        userTable.addEventListener('click', (event) => {
+            if (event.target.classList.contains('delete-btn')) {
+                const userId = event.target.dataset.userId;
+                const row = event.target.closest('tr'); // Get the parent row
+                if (confirm(`Are you sure you want to delete user ${userId}?`)) {
+                    row.remove(); // Remove the row from the table
+                    console.log(`Deleting user with ID: ${userId}`);
+                    // Here you would typically make an AJAX call to delete the user from the server
+                }
+            }
+        });
+
+        addUserBtn.addEventListener('click', () => {
+            const newRow = userTable.insertRow();
+            const nameCell = newRow.insertCell();
+            const emailCell = newRow.insertCell();
+            const actionCell = newRow.insertCell();
+            nameCell.textContent = `New User ${userIdCounter}`;
+            emailCell.textContent = `new.user${userIdCounter}@example.com`;
+            actionCell.innerHTML = `<button class="delete-btn" data-user-id="${userIdCounter}">Delete</button>`;
+            userIdCounter++;
+        });
+    </script>
+</body>
+</html>

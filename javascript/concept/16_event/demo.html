@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Delegation</title>
+</head>
+<body>
+    <ul id="milestoneList">
+        <li data-milestone="first-date">First Date</li>
+        <li data-milestone="first-kiss">First Kiss</li>
+        <li data-milestone="engagement">Engagement</li>
+        <li data-milestone="wedding">Wedding</li>
+    </ul>
+
+    <div id="message"></div>
+
+    <script>
+        const milestoneList = document.getElementById('milestoneList');
+        const messageDiv = document.getElementById('message');
+
+        milestoneList.addEventListener('click', function(event) {
+            const milestone = event.target.dataset.milestone;
+            if (milestone) { // Check if the clicked element is an LI
+                messageDiv.textContent = `You clicked on: ${milestone.replace(/-/g, ' ')}`;
+            }
+        });
+    </script>
+</body>
+</html>
