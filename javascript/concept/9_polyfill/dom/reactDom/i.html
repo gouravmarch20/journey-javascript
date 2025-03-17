@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Render DOM Test</title>
+</head>
+<body>
+    <script>
+        const dom = {
+            type: 'section',
+            props: {
+                id: 'section-1',
+                class: 'main-section',
+                style: 'background-color: lightblue; padding: 20px; border-radius: 5px;'
+            },
+            children: [
+                {
+                    type: 'header',
+                    children: 'Welcome to Soni Frontend Doc',
+                    props: {
+                        style: 'font-size: 24px; color: darkblue; text-align: center;'
+                    }
+                },
+                {
+                    type: 'article',
+                    children: [
+                        {
+                            type: 'h2',
+                            children: 'Render DOM',
+                            props: { style: 'color: darkgreen;' }
+                        },
+                        {
+                            type: 'p',
+                            children: 'Try yourself first then look for solution',
+                            props: { style: 'font-size: 16px; color: grey;' }
+                        }
+                    ]
+                },
+                {
+                    type: 'footer',
+                    children: 'Thanks you :)',
+                    props: {
+                        style: 'text-align: center; font-size: 14px; color: black;'
+                    }
+                }
+            ]
+        };
+
+        function renderDom(dom, parent = document.body) {
+            // Create the element
+            const element = document.createElement(dom.type);
+            
+            // Assign properties (attributes, styles, etc.)
+            if (dom.props) {
+                for (let prop in dom.props) {
+                    if (prop === 'style') {
+                        element.style.cssText = dom.props[prop]; // Apply styles
+                    } else {
+                        element.setAttribute(prop, dom.props[prop]); // Set attributes
+                    }
+                }
+            }
+
+            // Append children
+            if (Array.isArray(dom.children)) {
+                dom.children.forEach(child => renderDom(child, element)); // Recursive call for children
+            } else if (typeof dom.children === 'string') {
+                element.textContent = dom.children; // If child is text, add it directly
+            }
+
+            // Append element to the parent
+            parent.appendChild(element);
+        }
+
+        // Render the DOM structure
+        renderDom(dom, document.body);
+    </script>
+</body>
+</html>
