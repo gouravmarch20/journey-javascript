@@ -9,7 +9,7 @@
 2 b i > functionCall ==> hosting run for new context ==>  var myName set undefined , no function so avoid / 1 varible only in this context
 
 2 b ii > now function tellName run & in clg it try to print hisName name value not find value in it's context so ask from it's parent context hence print bill acaman 
-2 b iii > clg myName due to hosting it has assigned undefined so it print undefined 
+2 b iii > clg myName due to hosting it has assigned undefined so it print undefined      
 
 2 b iv>  now it var myName he asign the given value 
 
