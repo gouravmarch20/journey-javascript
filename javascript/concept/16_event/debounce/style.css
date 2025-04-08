@@ -1,8 +1,0 @@
-#resultsList {
-    list-style: none;
-    padding: 0;
-}
-#resultsList li {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-}

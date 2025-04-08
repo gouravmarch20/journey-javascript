@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom instanceof Implementation</title>
+</head>
+
+<body>
+    <h2>Open Console to See the Output</h2>
+
+    <script>
+        // Custom instanceOf function using __proto__
+        const instanceOf = (obj, target) => {
+            if (obj === null || typeof obj !== 'object') return false;
+
+            while (obj) {
+                if (obj.__proto__ === target.prototype) return true;
+                obj = obj.__proto__; // Move up the prototype chain
+            }
+            return false;
+        };
+
+        // Define a class hierarchy
+        class Animal {}
+        class Dog extends Animal {}
+        class Cat extends Animal {}
+
+        const dog = new Dog();
+        const cat = new Cat();
+        const obj = {}; // Plain object
+
+        // 🔍 Check instanceof using our custom function
+        console.log("✅ Testing instanceOf Function:");
+        console.log("dog instanceof Dog:", instanceOf(dog, Dog));       // true
+        console.log("dog instanceof Animal:", instanceOf(dog, Animal)); // true
+        console.log("dog instanceof Object:", instanceOf(dog, Object)); // true
+        console.log("dog instanceof Cat:", instanceOf(dog, Cat));       // false ❌ (Dog is not a Cat)
+        console.log("obj instanceof Animal:", instanceOf(obj, Animal)); // false ❌ (Plain object isn't an Animal)
+
+        // 🔍 Visualizing the Prototype Chain using __proto__
+        console.log("\n🔗 Prototype Chain of Dog Instance:");
+        // console.log("" , dog) 
+        let proto = dog;
+        while (proto) {
+            console.log("--" , proto)
+            // console.log(proto);
+            proto = proto.__proto__;
+        }
+    </script>
+
+</body>
+
+</html>

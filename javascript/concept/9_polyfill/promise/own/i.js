@@ -1,3 +1,0 @@
-myFetch('/myURL')
-.then()
-.catch()
