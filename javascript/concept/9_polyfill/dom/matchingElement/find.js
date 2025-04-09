@@ -35,7 +35,7 @@ const positiveResult = findMatchingElement(
 );
 
 if (positiveResult) {
-    console.log("Positive Result:", positiveResult.textContent); // Output: "Positive Result: Test1"
+    console.log("Positive Result:", positiveResult); // Output: "Positive Result: Test1"
 } else {
     console.log("Positive Result: No matching element found.");
 }

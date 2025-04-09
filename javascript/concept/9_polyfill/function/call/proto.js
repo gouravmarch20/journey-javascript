@@ -1,14 +1,14 @@
 Function.prototype.myCall = function (context, ...args) {
   // If context is null or undefined, default to global object (window in browsers, globalThis in Node)
-  if(typeof this !== "function"){
+  if (typeof this !== "function") {
     throw new TypeError("myCall must be called on a function");
   }
   context = context || globalThis;
-  console.log("myCall", context);
+  // console.log("myCall", context);
   // Create a unique property on the context object to store the function
   const fnSymbol = Symbol(); // Unique key to avoid overwriting existing properties
   context[fnSymbol] = this; //* `this` refers to the function calling `myCall` --> to run call function
-  console.log("fnSymbol", fnSymbol);
+  // console.log("fnSymbol", fnSymbol);
 
   // Call the function and store the result
   const result = context[fnSymbol](...args);
@@ -23,6 +23,7 @@ Function.prototype.myCall = function (context, ...args) {
 
 function greet(city, country) {
   console.log(`Hello, my name is ${this.name}. I live in ${city}, ${country}.`);
+  return "hello_greet";
 }
 
 const person = { name: "Alice" };

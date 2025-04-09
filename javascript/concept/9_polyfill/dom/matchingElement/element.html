@@ -3,30 +3,58 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Matching Element</title>
+    <title>Find Matching Element - Complex Layout</title>
 </head>
 
 <body>
     <div id="container1">
-        <div>
-            Soni Frontend Document
-            <div>
-                <span id="span-id">Test1</span>
-                <span id="span-id-2">Test2</span>
-            </div>
-        </div>
+        <section>
+            <header>
+                <h1>Title 1</h1>
+                <nav>
+                    <ul>
+                        <li><a href="#">Link 1</a></li>
+                        <li><a href="#">Link 2</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <main>
+                <article>
+                    <h2>Article 1</h2>
+                    <p>Paragraph 1</p>
+                    <div class="inner-block">
+                        <span id="span-id-1">Deep Span 1</span>
+                        <span>Sibling Span</span>
+                    </div>
+                </article>
+            </main>
+        </section>
     </div>
 
     <div id="container2">
-        <div>
-            <div></div>
-            <span>Test2</span> <!-- This should match span-id-2 -->
-            <span>Test1</span> <!-- This should match span-id -->
-        </div>
+        <section>
+            <header>
+                <h1>Title 1</h1>
+                <nav>
+                    <ul>
+                        <li><a href="#">Link 1</a></li>
+                        <li><a href="#">Link 2</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <main>
+                <article>
+                    <h2>Article 1</h2>
+                    <p>Paragraph 1</p>
+                    <div class="inner-block">
+                        <div class="dfss" id="dd">Deep Span 1</div> <!-- This should match span-id-1 -->
+                        <span>Sibling Span</span>
+                    </div>
+                </article>
+            </main>
+        </section>
     </div>
 
-    <!-- <script src="./find.js"></script> -->
     <script src="./findSon.js"></script>
 </body>
 

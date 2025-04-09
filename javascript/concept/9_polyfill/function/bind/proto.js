@@ -8,7 +8,6 @@ Function.prototype.myBind = function (context, ...params) {
   };
 };
 
- 
 function multiply(a, b) {
   return a * b;
 }
