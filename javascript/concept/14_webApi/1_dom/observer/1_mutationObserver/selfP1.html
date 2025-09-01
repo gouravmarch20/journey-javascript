@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MutationObserver Example</title>
+<style>
+  ol {
+    border: 1px solid red;
+    padding: 10px;
+  }
+</style>
+</head>
+<body>
+
+<ol contenteditable>
+  <li>Press enter</li>
+</ol>
+
+<script>
+  const targetNode = document.querySelector('ol');
+
+  const config = {
+    attributes: true, 
+    childList: true, 
+    characterData: true
+  };
+
+  const callback = mutations => {  
+    mutations.forEach(mutation => {
+      if (mutation.type === 'childList') {
+        const listValues = Array.from(targetNode.children)
+          .map(node => node.innerHTML)
+          .filter(html => html !== '<br>');
+        console.log(listValues);
+      }
+    });
+  };
+
+  const observer = new MutationObserver(callback);
+  observer.observe(targetNode, config);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MultiObserveList</title>
+    <style>
+      #container {
+        height: 400px;
+        overflow: auto;
+        border: 1px solid black;
+      }
+      #container1 {
+        height: 200px;
+        overflow: auto;
+        border: 1px solid black;
+      }
+      .item {
+        height: 100px;
+        margin: 10px;
+        background: #eee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <div id="container1"></div>
+
+
+    <script>
+      const container = document.getElementById("container");
+      const container1 = document.getElementById("container1");
+
+      // Create and append 20 items
+      for (let i = 0; i < 20; i++) {
+        const div = document.createElement("div");
+        div.className = "item";
+        div.dataset.index = i;
+        div.textContent = `Item #${i}`;
+        container.appendChild(div);
+      }
+      for (let i = 0; i < 20; i++) {
+        const div = document.createElement("div");
+        div.className = "item";
+        div.dataset.index = i;
+        div.textContent = `Item #${i}`;
+        container1.appendChild(div);
+      }
+
+      const items = container.querySelectorAll(".item");
+
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          console.log("all",  entries);
+
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              console.log(`Visible: ${entry.target.dataset.index}`);
+              // Do something like fetch more data, add a class, etc.
+            }
+          });
+        },
+        {
+          // root: container,
+          rootMargin: "0px",
+          threshold: 0.5,
+        }
+      );
+
+      items.forEach((item) => observer.observe(item));
+
+      // Optional cleanup if needed
+      // window.onbeforeunload = () => observer.disconnect();
+    </script>
+  </body>
+</html>

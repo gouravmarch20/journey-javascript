@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MutationObserver Advanced</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f7f7f7;
+    }
+
+    .parent-div {
+      border: 2px dashed #ccc;
+      padding: 10px;
+      background: #fff;
+      margin-bottom: 20px;
+    }
+
+    .parent-div > div {
+      margin: 5px 0;
+      padding: 5px;
+      background: #e3e3e3;
+    }
+
+    button {
+      margin: 5px;
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>MutationObserver Demo</h1>
+
+  <div id="elem" class="parent-div">
+    <div class="div1">Div 1</div>
+    <div class="div2">Div 2</div>
+    <div class="div3">Div 3</div>
+  </div>
+
+
+  <button onclick="changeRandomText()">Change Random Child Text</button>
+  <button onclick="triggerMultipleMutations()">🔁 Multiple Mutations</button>
+
+  <script>
+    const elem = document.getElementById("elem");
+
+    const observer = new MutationObserver((mutations) => {
+      console.group("Mutation Batch:" , mutations);
+      mutations.forEach((mutation) => {
+        console.log("Mutation Child:" , mutation);
+
+        if (mutation.type === "childList") {
+          if (mutation.addedNodes.length > 0) {
+            console.log("✅ Node(s) added:", mutation.addedNodes);
+          }
+          if (mutation.removedNodes.length > 0) {
+            console.log("❌ Node(s) removed:", mutation.removedNodes);
+          }
+        } else if (mutation.type === "attributes") {
+          console.log(
+            `⚙️ Attribute '${mutation.attributeName}' changed on`,
+            mutation.target
+          );
+        } else if (mutation.type === "characterData") {
+          console.log(
+            "📝 Text changed from:",
+            mutation.oldValue,
+            "to:",
+            mutation.target.data
+          );
+        }
+      });
+      console.groupEnd();
+    });
+
+    observer.observe(elem, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      characterData: true,
+      characterDataOldValue: true,
+    });
+
+    function deleteLastDiv() {
+      const lastDiv = elem.lastElementChild;
+      if (lastDiv) elem.removeChild(lastDiv);
+    }
+
+    function addTop() {
+      const newDiv = document.createElement("div");
+      newDiv.textContent = "New Div";
+      elem.insertBefore(newDiv, elem.firstChild);
+    }
+
+    function addRandomDiv() {
+      const newDiv = document.createElement("div");
+      newDiv.textContent = `Div ${Math.floor(Math.random() * 100)}`;
+      newDiv.setAttribute(
+        "data-id",
+        Math.random().toString(36).substring(2, 7)
+      );
+      elem.appendChild(newDiv);
+    }
+
+    function changeRandomAttribute() {
+      const divs = elem.querySelectorAll("div");
+      if (divs.length === 0) return;
+      const randomDiv = divs[Math.floor(Math.random() * divs.length)];
+      randomDiv.setAttribute("data-modified", Date.now());
+    }
+
+    function changeRandomText() {
+      const divs = elem.querySelectorAll("div");
+      if (divs.length === 0) return;
+      const randomDiv = divs[Math.floor(Math.random() * divs.length)];
+      if (randomDiv.firstChild && randomDiv.firstChild.nodeType === 3) {
+        randomDiv.firstChild.textContent =
+          "Updated at " + new Date().toLocaleTimeString();
+      }
+    }
+
+    function triggerMultipleMutations() {
+      // Perform all mutations at once
+      addRandomDiv();
+      deleteLastDiv();
+      changeRandomAttribute();
+      changeRandomText();
+    }
+  </script>
+</body>
+</html>

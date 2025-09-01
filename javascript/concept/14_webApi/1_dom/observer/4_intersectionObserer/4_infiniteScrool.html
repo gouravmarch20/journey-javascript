@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Infinite Scroll</title>
+  <style>
+    #container {
+      height: 400px;
+      overflow: auto;
+      border: 1px solid #000;
+    }
+    .item {
+      height: 100px;
+      margin: 10px;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="container">
+    <!-- Items will be added dynamically -->
+    <div id="sentinel" class="item">Loading more...</div>
+  </div>
+
+  <script>
+    const container = document.getElementById('container');
+    const sentinel = document.getElementById('sentinel');
+    let itemCount = 0;
+    const batchSize = 10;
+
+    function addItems(count) {
+      for (let i = 0; i < count; i++) {
+        const item = document.createElement('div');
+        item.className = 'item';
+        item.textContent = `Item #${itemCount++}`;
+        container.insertBefore(item, sentinel);
+      }
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      console.log("debug" , entries)
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Simulate network delay
+          setTimeout(() => {
+            addItems(batchSize);
+          }, 500);
+        }
+      });
+    }, {
+      root: container,
+      threshold: 1.0
+    });
+
+    // Initial items
+    addItems(batchSize);
+    observer.observe(sentinel);
+  </script>
+
+</body>
+</html>

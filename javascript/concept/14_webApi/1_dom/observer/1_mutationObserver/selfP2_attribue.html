@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MutationObserver Demo</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  #user-list {
+    border: 1px solid #ccc;
+    padding: 10px;
+    max-width: 400px;
+  }
+  .user {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+  }
+  button {
+    margin: 5px 0 10px 0;
+  }
+</style>
+</head>
+<body>
+
+<h2>User List</h2>
+<div id="user-list">
+  <div class="user" username="alice" status="online">Alice (Status: <span class="status-text">online</span>)</div>
+  <div class="user" username="bob" status="offline">Bob (Status: <span class="status-text">offline</span>)</div>
+</div>
+
+<button onclick="changeStatus('alice')">Toggle Alice Status</button>
+<button onclick="changeUsername('bob')">Change Bob's Username</button>
+
+<script>
+  // Callback functions called on mutation
+  function userStatusChanged(username, status) {
+    console.log(`Status changed for ${username}: now ${status}`);
+    // Update visible text
+    const userElem = [...document.querySelectorAll("#user-list .user")].find(el => el.getAttribute("username") === username);
+    if(userElem) {
+      userElem.querySelector(".status-text").textContent = status;
+    }
+  }
+
+  function usernameChanged(oldUsername, newUsername) {
+    console.log(`Username changed from ${oldUsername} to ${newUsername}`);
+    // Update visible text
+    const userElem = [...document.querySelectorAll("#user-list .user")].find(el => el.getAttribute("username") === newUsername);
+    if(userElem) {
+      userElem.firstChild.textContent = newUsername.charAt(0).toUpperCase() + newUsername.slice(1) + ` (Status: ${userElem.getAttribute('status')})`;
+    }
+  }
+
+  // The mutation observer callback
+  function callback(mutationList) {
+    mutationList.forEach((mutation) => {
+      switch (mutation.type) {
+        case "attributes":
+          switch (mutation.attributeName) {
+            case "status":
+              userStatusChanged(mutation.target.getAttribute('username'), mutation.target.getAttribute('status'));
+              break;
+            case "username":
+              usernameChanged(mutation.oldValue, mutation.target.getAttribute('username'));
+              break;
+          }
+          break;
+      }
+    });
+  }
+
+  // Select the user list element
+  const userListElement = document.querySelector("#user-list");
+
+  // Create observer
+  const observer = new MutationObserver(callback);
+
+  // Start observing with attribute filter and old attribute values
+  observer.observe(userListElement, {
+    attributeFilter: ["status", "username"],
+    attributeOldValue: true,
+    subtree: true,
+  });
+
+  // Helper functions to change attributes
+
+  function changeStatus(username) {
+    const userElem = [...document.querySelectorAll("#user-list .user")].find(el => el.getAttribute("username") === username);
+    if (!userElem) return;
+    const currentStatus = userElem.getAttribute("status");
+    const newStatus = currentStatus === "online" ? "offline" : "online";
+    userElem.setAttribute("status", newStatus);
+  }
+
+  function changeUsername(oldUsername) {
+    const userElem = [...document.querySelectorAll("#user-list .user")].find(el => el.getAttribute("username") === oldUsername);
+    if (!userElem) return;
+    // Just append "123" to simulate username change
+    const newUsername = oldUsername + "123";
+    userElem.setAttribute("username", newUsername);
+  }
+</script>
+
+</body>
+</html>

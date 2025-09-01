@@ -1,19 +1,22 @@
-const memorizeF = (fn) => {
+function memoize(fn) {
   const cache = {};
-  return (...args) => {
-    const key = JSON.stringify(args);
-    if (cache[key]) {
+  return function(x) {
+    if (cache[x] !== undefined) {
       console.log("-- Returning from cache --");
-      return cache[key];
+      return cache[x];
     }
     console.log("-- Computing new value --");
-    return (cache[key] = fn(...args));
+    cache[x] = fn(x);
+    return cache[x];
   };
-};
+}
 
-const factorial = (n) => (n <= 1 ? 1 : n * factorial(n - 1));
+// Simple function (no recursion needed)
+const square = (n) => n * n;
 
-const memorizeFactorial = memorizeF(factorial);
+const memoSquare = memoize(square);
 
-console.log(memorizeFactorial(5)); // Computed
-console.log(memorizeFactorial(5)); // Cached
+console.log(memoSquare(5)); // Computing -> 25
+console.log(memoSquare(5)); // Cached -> 25
+console.log(memoSquare(6)); // Computing -> 36
+console.log(memoSquare(6)); // Cached -> 36

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PerformanceObserver Demo</title>
+</head>
+<body>
+  <h1>PerformanceObserver Demo</h1>
+  <img src="https://via.placeholder.com/300" alt="Test Image" />
+
+  <script>
+    // Create a PerformanceObserver
+    const observer = new PerformanceObserver((list) => {
+      const entries = list.getEntries();
+      entries.forEach((entry) => {
+        console.log(`Type: ${entry.entryType}`);
+        console.log(entry);
+      });
+    });
+
+    // Observe 'navigation' and 'resource' timing entries
+    observer.observe({ entryTypes: ['navigation', 'resource'] });
+
+    // Optional: Log some custom marks and measures
+    performance.mark('startTask');
+
+    setTimeout(() => {
+      performance.mark('endTask');
+      performance.measure('MyTask', 'startTask', 'endTask');
+
+      // Observe custom measures
+      const customObserver = new PerformanceObserver((list) => {
+        console.log('Custom Measures:', list.getEntries());
+      });
+      customObserver.observe({ entryTypes: ['measure'] });
+    }, 1000);
+  </script>
+</body>
+</html>

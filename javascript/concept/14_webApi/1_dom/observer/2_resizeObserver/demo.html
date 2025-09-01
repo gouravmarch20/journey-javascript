@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ResizeObserver Demo</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+
+      #resizable-box {
+        width: 300px;
+        height: 200px;
+        background-color: #d0ebff;
+        resize: both;
+        overflow: auto;
+        padding: 10px;
+        border: 2px solid #339af0;
+        box-sizing: border-box;
+        min-width: 150px;
+        min-height: 100px;
+        position: relative;
+      }
+
+      #size-indicator {
+        margin-top: 10px;
+        font-weight: bold;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>📦 Resize the Box Below</h2>
+    <p>
+      Drag the bottom-right corner of the box. The size will be shown below it.
+    </p>
+
+    <div id="resizable-box">
+      <p>This box is resizable. Try resizing it!</p>
+    </div>
+
+    <div id="size-indicator">300 × 200</div>
+
+    <script>
+      const box = document.getElementById("resizable-box");
+      const sizeIndicator = document.getElementById("size-indicator");
+
+      const resizeObserver = new ResizeObserver((entries) => {
+        console.log("d", entries);
+        for (let entry of entries) {
+          const { width, height } = entry.contentRect;
+          const sizeText = `${Math.round(width)} × ${Math.round(height)}`;
+          sizeIndicator.textContent = sizeText;
+          console.log(`Box resized to: ${sizeText}`);
+        }
+      });
+
+      resizeObserver.observe(box);
+    </script>
+  </body>
+</html>

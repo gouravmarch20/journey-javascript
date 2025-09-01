@@ -10,7 +10,7 @@
 // How does virtual DOM work in react
 // React code snippet where useMemo was used. Asked to identify what the problem with this snippet was. It was a memory leak issue.
 // List all hooks you know and explain about each briefly
-// create a custom hook that accepts a list of promises and returns the first promise that resolves
+// create a custom hook that accepts a list of j and returns the first promise that resolves
 // Follow up: include an expiry time to the above custom hook. If the time expires, return an error.
 // Round 3: System design
 // How does real-time publish/subscribe mechanism work in tech like Google docs?

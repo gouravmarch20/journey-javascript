@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MutationObserver Advanced</title>
+  </head>
+  <body>
+    <h1>MutationObserver</h1>
+    <div id="elem" class="parent-div">
+      <div class="div1">Div 1</div>
+      <div class="div2">Div 2</div>
+      <div class="div3">Div 3</div>
+    </div>
+
+    <button onclick="deleteLastDiv()">Delete Last Child</button>
+    <button onclick="addTop()">Add Child to Top</button>
+    <button onclick="addRandomDiv()">Add Random</button>
+    <button onclick="changeRandomAttribute()">Change Child Attribute</button>
+    <button onclick="changeRandomText()">Change Random Child Text</button>
+
+    <script>
+      const elem = document.getElementById("elem");
+
+      const observer = new MutationObserver((mutations) => {
+        console.group("Mutation Batch:");
+        console.log("mutations" , mutations)
+        mutations.forEach((mutation) => {
+            console.log("mutations_child" , mutation)
+
+          if (mutation.type === "childList") {
+            if (mutation.addedNodes.length > 0) {
+              console.log("Node(s) added:", mutation.addedNodes);
+            }
+            if (mutation.removedNodes.length > 0) {
+              console.log("Node(s) removed:", mutation.removedNodes);
+            }
+          } else if (mutation.type === "attributes") {
+            console.log(
+              `Attribute '${mutation.attributeName}' changed on`,
+              mutation.target
+            );
+          } else if (mutation.type === "characterData") {
+            console.log(
+              "Text changed from:",
+              mutation.oldValue,
+              "to:",
+              mutation.target.data
+            );
+          }
+        });
+        console.groupEnd();
+      });
+
+      observer.observe(elem, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        characterData: true,
+        characterDataOldValue: true,
+      });
+
+      function deleteLastDiv() {
+        const lastDiv = elem.lastElementChild;
+        if (lastDiv) elem.removeChild(lastDiv);
+      }
+
+      function addTop() {
+        const newDiv = document.createElement("div");
+        newDiv.textContent = "New Div";
+        elem.insertBefore(newDiv, elem.firstChild);
+      }
+      
+
+      function addRandomDiv() {
+        const newDiv = document.createElement("div");
+        newDiv.textContent = `Div ${Math.floor(Math.random() * 100)}`;
+        newDiv.setAttribute(
+          "data-id",
+          Math.random().toString(36).substring(2, 7)
+        );
+        elem.appendChild(newDiv);
+      }
+
+      function changeRandomAttribute() {
+        const divs = elem.querySelectorAll("div");
+        if (divs.length === 0) return;
+        const randomDiv = divs[Math.floor(Math.random() * divs.length)];
+        randomDiv.setAttribute("data-modified", Date.now());
+      }
+
+      function changeRandomText() {
+        const divs = elem.querySelectorAll("div");
+        if (divs.length === 0) return;
+        const randomDiv = divs[Math.floor(Math.random() * divs.length)];
+        if (randomDiv.firstChild && randomDiv.firstChild.nodeType === 3) {
+          randomDiv.firstChild.textContent =
+            "Updated at " + new Date().toLocaleTimeString();
+        }
+      }
+    </script>
+  </body>
+</html>

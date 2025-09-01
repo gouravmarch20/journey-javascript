@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Element Measurement Demo</title>
+    <style>
+        #measure-me {
+            width: 200px;
+            height: 100px;
+            padding: 20px;
+            border: 5px solid #2c3e50;
+            margin: 30px;
+            background-color: #3498db;
+            box-sizing: border-box; /* Change to content-box to see difference */
+        }
+    </style>
+</head>
+<body>
+    <div id="measure-me">Measurement Box</div>
+    
+    <button onclick="showMeasurements()">Show Measurements</button>
+    
+    <script>
+        function showMeasurements() {
+            const box = document.getElementById('measure-me');
+            
+            // 1. offsetWidth/offsetHeight (includes content + padding + border)
+            console.log('offsetWidth:', box.offsetWidth, 'offsetHeight:', box.offsetHeight);
+            
+            // 2. clientWidth/clientHeight (includes content + padding only)
+            console.log('clientWidth:', box.clientWidth, 'clientHeight:', box.clientHeight);
+    
+        }
+    </script>
+</body>
+</html>
